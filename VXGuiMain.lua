@@ -1,6 +1,4 @@
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local StarterGui = game:GetService("StarterGui")
+
 local Workspace = game:GetService("Workspace")
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
@@ -694,4 +692,5 @@ openButton.MouseButton1Click:Connect(function()
 end)
 
 screenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
+
 
