@@ -1,9 +1,14 @@
-
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local StarterGui = game:GetService("StarterGui")
 local Workspace = game:GetService("Workspace")
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 
 -- GUI Creation
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "VXGui"
+screenGui.ResetOnSpawn = false
 
 local function createCorner(parent, radius)
     local corner = Instance.new("UICorner")
@@ -689,6 +694,4 @@ openButton.MouseButton1Click:Connect(function()
 end)
 
 screenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
-
-
 
