@@ -1,101 +1,4 @@
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local StarterGui = game:GetService("StarterGui")
-local Workspace = game:GetService("Workspace")
-local UserInputService = game:GetService("UserInputService")
-local RunService = game:GetService("RunService")
 
--- GUI Creation
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "VXGui"
-screenGui.ResetOnSpawn = false
-
-local function createCorner(parent, radius)
-    local corner = Instance.new("UICorner")
-    corner.CornerRadius = UDim.new(0, radius)
-    corner.Parent = parent
-end
-
-local function createShadow(parent)
-    local shadow = Instance.new("ImageLabel")
-    shadow.BackgroundTransparency = 1
-    shadow.Image = "rbxassetid://1316045217"
-    shadow.Size = UDim2.new(1, 12, 1, 12)
-    shadow.Position = UDim2.new(0, -6, 0, -6)
-    shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-    shadow.ImageTransparency = 0.7
-    shadow.ZIndex = parent.ZIndex - 1
-    shadow.Parent = parent
-end
-
-local openButton = Instance.new("TextButton")
-openButton.Name = "OpenVX"
-openButton.Text = "vx"
-openButton.Size = UDim2.new(0, 70, 0, 38)
-openButton.Position = UDim2.new(0, 10, 0, 10)
-openButton.BackgroundColor3 = Color3.fromRGB(85, 170, 255)
-openButton.TextColor3 = Color3.new(1,1,1)
-openButton.Font = Enum.Font.GothamBlack
-openButton.TextSize = 28
-openButton.ZIndex = 4
-createCorner(openButton, 12)
-openButton.Parent = screenGui
-createShadow(openButton)
-
--- Hover effect for vx button
-openButton.MouseEnter:Connect(function()
-    openButton.BackgroundColor3 = Color3.fromRGB(120, 200, 255)
-end)
-openButton.MouseLeave:Connect(function()
-    openButton.BackgroundColor3 = Color3.fromRGB(85, 170, 255)
-end)
-
-local mainFrame = Instance.new("Frame")
-mainFrame.Name = "MainFrame"
-mainFrame.Size = UDim2.new(0, 370, 0, 520)
-mainFrame.Position = UDim2.new(0, 80, 0, 40)
-mainFrame.BackgroundColor3 = Color3.fromRGB(32, 34, 40)
-mainFrame.BorderSizePixel = 0
-mainFrame.Visible = false
-mainFrame.ZIndex = 3
-createCorner(mainFrame, 10)
-mainFrame.Parent = screenGui
-createShadow(mainFrame)
-
-local title = Instance.new("TextLabel")
-title.Text = "VX Scripts"
-title.Size = UDim2.new(1, 0, 0, 40)
-title.Position = UDim2.new(0, 0, 0, 0)
-title.BackgroundTransparency = 1
-title.TextColor3 = Color3.fromRGB(85, 170, 255)
-title.Font = Enum.Font.GothamBlack
-title.TextSize = 30
-title.ZIndex = 5
-title.Parent = mainFrame
-
--- ScrollingFrame for features
-local scrollFrame = Instance.new("ScrollingFrame")
-scrollFrame.Name = "ScrollFrame"
-scrollFrame.Size = UDim2.new(1, -20, 1, -60)
-scrollFrame.Position = UDim2.new(0, 10, 0, 50)
-scrollFrame.BackgroundTransparency = 1
-scrollFrame.BorderSizePixel = 0
-scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0) -- Will be set dynamically
-scrollFrame.ScrollBarThickness = 8
-scrollFrame.ZIndex = 4
-scrollFrame.Parent = mainFrame
-
-local scrollCorner = Instance.new("UICorner")
-scrollCorner.CornerRadius = UDim.new(0, 8)
-scrollCorner.Parent = scrollFrame
-
--- Movable GUI (do not remove)
-local dragging, dragInput, dragStart, startPos
-mainFrame.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        dragging = true
-        dragStart = input.Position
-        startPos = mainFrame.Position
         input.Changed:Connect(function()
             if input.UserInputState == Enum.UserInputState.End then
                 dragging = false
@@ -694,4 +597,5 @@ openButton.MouseButton1Click:Connect(function()
 end)
 
 screenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
+
 
